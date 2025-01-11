@@ -19,7 +19,7 @@ const dailyRoutineRoutes = require("./routes/dailyRoutineRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001; 
 
 // Enable CORS (Cross-Origin Resource Sharing)
 app.use(cors());
