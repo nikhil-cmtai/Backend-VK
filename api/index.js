@@ -1,18 +1,18 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const { notFoundResponse } = require("./utils/responseManager");
+const { notFoundResponse } = require("../utils/responseManager");
 const cors = require("cors");
 
 // Routes
-const homeRoutes = require("./routes/homeRoutes");
-const serviceRoutes = require("./routes/serviceRoute");
-const userRoutes = require("./routes/userRoutes");
-const blogRoutes = require("./routes/blogRoutes");
-const productRoutes = require("./routes/productRoutes");
-const purohitRoutes = require("./routes/purohitRoutes");
-const dailyRoutineRoutes = require("./routes/dailyRoutineRoutes");
-const appointmentRoutes = require("./routes/appointmentRoutes");
+const homeRoutes = require("../routes/homeRoutes");
+const serviceRoutes = require("../routes/serviceRoute");
+const userRoutes = require("../routes/userRoutes");
+const blogRoutes = require("../routes/blogRoutes");
+const productRoutes = require("../routes/productRoutes");
+const purohitRoutes = require("../routes/purohitRoutes");
+const dailyRoutineRoutes = require("../routes/dailyRoutineRoutes");
+const appointmentRoutes = require("../routes/appointmentRoutes");
 
 const app = express();
 const port = process.env.PORT || 3001;
