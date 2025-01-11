@@ -2,17 +2,19 @@ const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore');
 const { getStorage } = require('firebase/storage');
 const admin = require('firebase-admin');
-const serviceAccount = require('./serviceAccountKey.json');
+const dotenv = require('dotenv');
 
-// Your web app's Firebase configuration
+dotenv.config(); // Load environment variables
+
+// Your web app's Firebase configuration from environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyAwXRlOphJZczgaxvXw-nuQDQ_T-jI5BB4",
-  authDomain: "vk-mishra-6245d.firebaseapp.com",
-  projectId: "vk-mishra-6245d",
-  storageBucket: "vk-mishra-6245d.firebasestorage.app",
-  messagingSenderId: "892569670222",
-  appId: "1:892569670222:web:f5696121ac8a309468e91f",
-  measurementId: "G-JN2EW4Z9XS"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase once
@@ -21,10 +23,13 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firestore
 const db = getFirestore(app);
 
+// Firebase Admin SDK - Parse service account from environment variable
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+
 // Initialize Firebase Admin
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "vk-mishra-6245d.firebasestorage.app" // Update with your storage bucket
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET // Using the storage bucket from environment variables
 });
 
 // Initialize Admin Storage

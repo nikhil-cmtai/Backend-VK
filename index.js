@@ -3,6 +3,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { notFoundResponse } = require("./utils/responseManager");
 const cors = require("cors");
+const dotenv = require("dotenv");
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Routes
 const homeRoutes = require("./routes/homeRoutes");
