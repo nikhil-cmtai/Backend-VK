@@ -1,5 +1,5 @@
 const { db } = require('../config/firebase');
-const { collection, addDoc, getDoc, doc, setDoc, deleteDoc, getDocs } = require('firebase/firestore');
+const { collection, addDoc, getDoc, doc, setDoc, deleteDoc, getDocs, query, where } = require('firebase/firestore');
 
 // Create a new service in Firestore
 const createservice = async (serviceData) => {
@@ -19,6 +19,25 @@ const getservices = async () => {
         return services;
     } catch (error) {
         throw new Error("Error fetching services: " + error.message);
+    }
+};
+
+// Get active services from Firestore
+const getActiveservices = async () => {
+    try {
+        // Query to filter services where status = "active"
+        const activeServicesQuery = query(
+            collection(db, "services"),
+            where("status", "==", "active")
+        );
+
+        // Execute the query
+        const querySnapshot = await getDocs(activeServicesQuery);
+        const activeServices = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        return activeServices;
+    } catch (error) {
+        throw new Error("Error fetching active services: " + error.message);
     }
 };
 
@@ -60,4 +79,4 @@ const deleteservice = async (serviceId) => {
     }
 };
 
-module.exports = { createservice, getservices, getserviceById, updateservice, deleteservice };
+module.exports = { createservice, getservices, getActiveservices, getserviceById, updateservice, deleteservice };

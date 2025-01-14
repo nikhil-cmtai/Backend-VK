@@ -1,5 +1,5 @@
 const express = require("express");
-const { createservice, getservices, getserviceById, updateservice, deleteservice } = require("../services/serviceServices");
+const { createservice, getservices, getActiveservices, getserviceById, updateservice, deleteservice } = require("../services/serviceServices");
 const { successResponse, errorResponse } = require("../utils/responseManager");
 
 const router = express.Router();
@@ -19,6 +19,16 @@ router.post("/newData", async (req, res) => {
 router.get("/getService", async (req, res) => {
   try {
     const services = await getservices();
+    successResponse(res, services, "Services fetched successfully");
+  } catch (error) {
+    errorResponse(res, error, "Error fetching services");
+  }
+});
+
+// Get active services
+router.get("/getActiveService", async (req, res) => {
+  try {
+    const services = await getActiveservices();
     successResponse(res, services, "Services fetched successfully");
   } catch (error) {
     errorResponse(res, error, "Error fetching services");
