@@ -40,26 +40,26 @@ app.use(
   })
 );
 
-// // 🔹 Block Direct API Access (Postman, cURL, Unauthorized Sites)
-// app.use((req, res, next) => {
-//   const allowedReferrers = [
-//     "http://127.0.0.1:5501",
-//     "http://127.0.0.1:5500",
-//     "https://www.pujajyotish.com",
-//     "https://pujajyotish.com",
-//   ];
+// 🔹 Block Direct API Access (Postman, cURL, Unauthorized Sites)
+app.use((req, res, next) => {
+  const allowedReferrers = [
+    "http://127.0.0.1:5501",
+    "http://127.0.0.1:5500",
+    "https://www.pujajyotish.com",
+    "https://pujajyotish.com",
+  ];
 
-//   const referrer = req.get("Referer") || req.get("Origin");
+  const referrer = req.get("Referer") || req.get("Origin");
 
-//   // Block if referrer is missing or not in the allowed list
-//   if (!referrer || !allowedReferrers.some((url) => referrer.startsWith(url))) {
-//     return res
-//       .status(403)
-//       .json({ error: "Forbidden: Unauthorized Request not allowed" });
-//   }
+  // Block if referrer is missing or not in the allowed list
+  if (!referrer || !allowedReferrers.some((url) => referrer.startsWith(url))) {
+    return res
+      .status(403)
+      .json({ error: "Forbidden: Unauthorized Request not allowed" });
+  }
 
-//   next();
-// });
+  next();
+});
 
 // Middleware
 app.use(bodyParser.json()); // to parse JSON request bodies
