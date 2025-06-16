@@ -17,6 +17,7 @@ const purohitRoutes = require("./routes/purohitRoutes");
 const dailyRoutineRoutes = require("./routes/dailyRoutineRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 const leadRoutes = require("./routes/leadRoutes");
+const cashfreeRoutes = require("./routes/cashfreeRoutes");
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -81,6 +82,7 @@ app.use("/v1/dailyroutines", dailyRoutineRoutes);
 app.use("/v1/appointments", appointmentRoutes);
 
 app.use("/v1/leads", leadRoutes);
+app.use("/v1/cashfree", cashfreeRoutes);
 
 // Catch all route for 404 (route not found)
 app.use((req, res) => {

@@ -4,9 +4,9 @@ const dotenv = require('dotenv');
 
 dotenv.config(); // Load environment variables
 
-const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID_TEST;
-const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY_TEST;
-const CASHFREE_BASE_URL = process.env.CASHFREE_BASE_URL_TEST;
+const CASHFREE_APP_ID = process.env.CASHFREE_APP_ID;
+const CASHFREE_SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
+const CASHFREE_BASE_URL = process.env.CASHFREE_BASE_URL;
 
 // Function to create a Cashfree order
 const createOrder = async (amount, customerDetails) => {
@@ -26,7 +26,7 @@ const createOrder = async (amount, customerDetails) => {
       "Content-Type": "application/json",
       "x-client-id": CASHFREE_APP_ID,
       "x-client-secret": CASHFREE_SECRET_KEY,
-      "x-api-version": "2022-09-01", // Version header
+      "x-api-version": "2023-08-01", // Version header
     };
 
     const response = await axios.post(
