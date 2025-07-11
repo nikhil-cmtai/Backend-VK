@@ -24,6 +24,7 @@ const allowedOrigins = [
   "http://127.0.0.1:5500",
   "https://www.pujajyotish.com",
   "https://pujajyotish.com",
+  "https://pujajyotish.vercel.app",
 ];
 
 app.use(
